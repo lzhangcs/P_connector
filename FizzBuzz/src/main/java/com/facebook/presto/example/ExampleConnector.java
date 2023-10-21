@@ -20,6 +20,20 @@ import com.facebook.presto.spi.connector.ConnectorMetadata;
 import com.facebook.presto.spi.connector.ConnectorRecordSetProvider;
 import com.facebook.presto.spi.connector.ConnectorSplitManager;
 import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
+
+//linda
+import com.facebook.presto.spi.ConnectorSplitSource;
+import com.facebook.presto.spi.connector.ConnectorContext;
+import com.facebook.presto.spi.HostAddress;
+import com.facebook.presto.spi.NodeManager;
+import com.facebook.presto.spi.SplitContext;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
+import java.util.List;
+import java.util.Set;
+
+
+
 import com.facebook.presto.spi.transaction.IsolationLevel;
 
 import javax.inject.Inject;
@@ -27,7 +41,7 @@ import javax.inject.Inject;
 import static com.facebook.presto.example.ExampleTransactionHandle.INSTANCE;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleConnector
+public class FizzBuzzConnector
         implements Connector
 {
     private static final Logger log = Logger.get(ExampleConnector.class);
@@ -38,7 +52,7 @@ public class ExampleConnector
     private final ExampleRecordSetProvider recordSetProvider;
 
     @Inject
-    public ExampleConnector(
+    public FizzBuzzConnector(
             LifeCycleManager lifeCycleManager,
             ExampleMetadata metadata,
             ExampleSplitManager splitManager,
