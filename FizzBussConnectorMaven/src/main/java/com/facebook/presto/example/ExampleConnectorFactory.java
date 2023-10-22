@@ -56,7 +56,7 @@ public class ExampleConnectorFactory
                     .setRequiredConfigurationProperties(requiredConfig)
                     .initialize();
 
-            return injector.getInstance(ExampleConnector.class);
+            return injector.getInstance(FizzBuzzConnector.class);
         }
         catch (Exception e) {
             throwIfUnchecked(e);

@@ -45,7 +45,7 @@ public class TestExampleClient
 
         //Linda
        // ExampleTable table = client.getTable("example", "numbers");
-        ExampleTable table = client.getTable("example");
+        FizzBuzzTable table = client.getTable("example");
         assertNotNull(table, "table is null");
         assertEquals(table.getName(), "numbers");
         //Linda

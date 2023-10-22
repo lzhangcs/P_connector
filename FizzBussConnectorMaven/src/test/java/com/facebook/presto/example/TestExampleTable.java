@@ -26,7 +26,7 @@ import static org.testng.Assert.assertEquals;
 
 public class TestExampleTable
 {
-    private final ExampleTable exampleTable = new ExampleTable("tableName",
+    private final FizzBuzzTable exampleTable = new FizzBuzzTable("tableName",
             ImmutableList.of(new ExampleColumn("a", createUnboundedVarcharType()), new ExampleColumn("b", BIGINT)),
             ImmutableList.of(URI.create("file://table-1.json"), URI.create("file://table-2.json")));
 
@@ -42,7 +42,7 @@ public class TestExampleTable
     public void testRoundTrip()
     {
         String json = TABLE_CODEC.toJson(exampleTable);
-        ExampleTable exampleTableCopy = TABLE_CODEC.fromJson(json);
+        FizzBuzzTable exampleTableCopy = TABLE_CODEC.fromJson(json);
 
         assertEquals(exampleTableCopy.getName(), exampleTable.getName());
         assertEquals(exampleTableCopy.getColumns(), exampleTable.getColumns());

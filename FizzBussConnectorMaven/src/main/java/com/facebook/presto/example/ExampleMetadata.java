@@ -72,7 +72,7 @@ public class ExampleMetadata
             return null;
         }
 
-        ExampleTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+        FizzBuzzTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (table == null) {
             return null;
         }
@@ -98,7 +98,7 @@ public class ExampleMetadata
     public ConnectorTableMetadata getTableMetadata(ConnectorSession session, ConnectorTableHandle table)
     {
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) table;
-        checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+        // Linda checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
         SchemaTableName tableName = new SchemaTableName(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
 
         return getTableMetadata(tableName);
@@ -128,9 +128,9 @@ public class ExampleMetadata
     public Map<String, ColumnHandle> getColumnHandles(ConnectorSession session, ConnectorTableHandle tableHandle)
     {
         ExampleTableHandle exampleTableHandle = (ExampleTableHandle) tableHandle;
-        checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
+        //Linda checkArgument(exampleTableHandle.getConnectorId().equals(connectorId), "tableHandle is not for this connector");
 
-        ExampleTable table = exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
+        FizzBuzzTable table = exampleClient.getTable(exampleTableHandle.getSchemaName(), exampleTableHandle.getTableName());
         if (table == null) {
             throw new TableNotFoundException(exampleTableHandle.toSchemaTableName());
         }
@@ -165,7 +165,7 @@ public class ExampleMetadata
             return null;
         }
 
-        ExampleTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
+        FizzBuzzTable table = exampleClient.getTable(tableName.getSchemaName(), tableName.getTableName());
         if (table == null) {
             return null;
         }

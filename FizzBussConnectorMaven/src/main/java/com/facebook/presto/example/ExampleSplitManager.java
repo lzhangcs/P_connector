@@ -53,7 +53,7 @@ public class ExampleSplitManager
     {
         ExampleTableLayoutHandle layoutHandle = (ExampleTableLayoutHandle) layout;
         ExampleTableHandle tableHandle = layoutHandle.getTable();
-        ExampleTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
+        FizzBuzzTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
         // this can happen if table is removed during a query
         checkState(table != null, "Table %s.%s no longer exists", tableHandle.getSchemaName(), tableHandle.getTableName());
 

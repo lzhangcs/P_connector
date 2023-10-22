@@ -39,16 +39,16 @@ public final class MetadataUtil
     {
     }
 
-    public static final JsonCodec<Map<String, List<ExampleTable>>> CATALOG_CODEC;
-    public static final JsonCodec<ExampleTable> TABLE_CODEC;
+    public static final JsonCodec<Map<String, List<FizzBuzzTable>>> CATALOG_CODEC;
+    public static final JsonCodec<FizzBuzzTable> TABLE_CODEC;
     public static final JsonCodec<ExampleColumnHandle> COLUMN_CODEC;
 
     static {
         JsonObjectMapperProvider objectMapperProvider = new JsonObjectMapperProvider();
         objectMapperProvider.setJsonDeserializers(ImmutableMap.of(Type.class, new TestingTypeDeserializer()));
         JsonCodecFactory codecFactory = new JsonCodecFactory(objectMapperProvider);
-        CATALOG_CODEC = codecFactory.mapJsonCodec(String.class, listJsonCodec(ExampleTable.class));
-        TABLE_CODEC = codecFactory.jsonCodec(ExampleTable.class);
+        CATALOG_CODEC = codecFactory.mapJsonCodec(String.class, listJsonCodec(FizzBuzzTable.class));
+        TABLE_CODEC = codecFactory.jsonCodec(FizzBuzzTable.class);
         COLUMN_CODEC = codecFactory.jsonCodec(ExampleColumnHandle.class);
     }
 
