@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.airlift.json.JsonCodec;
 import com.facebook.airlift.testing.EquivalenceTester;
@@ -20,16 +20,16 @@ import org.testng.annotations.Test;
 import static com.facebook.airlift.json.JsonCodec.jsonCodec;
 import static org.testng.Assert.assertEquals;
 
-public class TestExampleTableHandle
+public class TestFizzBuzzTableHandle
 {
-    private final ExampleTableHandle tableHandle = new ExampleTableHandle("connectorId", "schemaName", "tableName");
+    private final FizzBuzzTableHandle tableHandle = new FizzBuzzTableHandle("connectorId", "schemaName", "tableName");
 
     @Test
     public void testJsonRoundTrip()
     {
-        JsonCodec<ExampleTableHandle> codec = jsonCodec(ExampleTableHandle.class);
+        JsonCodec<FizzBuzzTableHandle> codec = jsonCodec(FizzBuzzTableHandle.class);
         String json = codec.toJson(tableHandle);
-        ExampleTableHandle copy = codec.fromJson(json);
+        FizzBuzzTableHandle copy = codec.fromJson(json);
         assertEquals(copy, tableHandle);
     }
 
@@ -37,10 +37,10 @@ public class TestExampleTableHandle
     public void testEquivalence()
     {
         EquivalenceTester.equivalenceTester()
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "table"), new ExampleTableHandle("connector", "schema", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connectorX", "schema", "table"), new ExampleTableHandle("connectorX", "schema", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schemaX", "table"), new ExampleTableHandle("connector", "schemaX", "table"))
-                .addEquivalentGroup(new ExampleTableHandle("connector", "schema", "tableX"), new ExampleTableHandle("connector", "schema", "tableX"))
+                .addEquivalentGroup(new FizzBuzzTableHandle("connector", "schema", "table"), new FizzBuzzTableHandle("connector", "schema", "table"))
+                .addEquivalentGroup(new FizzBuzzTableHandle("connectorX", "schema", "table"), new FizzBuzzTableHandle("connectorX", "schema", "table"))
+                .addEquivalentGroup(new FizzBuzzTableHandle("connector", "schemaX", "table"), new FizzBuzzTableHandle("connector", "schemaX", "table"))
+                .addEquivalentGroup(new FizzBuzzTableHandle("connector", "schema", "tableX"), new FizzBuzzTableHandle("connector", "schema", "tableX"))
                 .check();
     }
 }

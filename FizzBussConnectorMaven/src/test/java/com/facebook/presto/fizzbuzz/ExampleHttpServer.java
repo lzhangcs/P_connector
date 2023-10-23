@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.airlift.bootstrap.Bootstrap;
 import com.facebook.airlift.bootstrap.LifeCycleManager;
@@ -86,7 +86,7 @@ public class ExampleHttpServer
         protected void doGet(HttpServletRequest request, HttpServletResponse response)
                 throws IOException
         {
-            URL dataUrl = Resources.getResource(TestExampleClient.class, request.getPathInfo());
+            URL dataUrl = Resources.getResource(TestFizzBuzzClient.class, request.getPathInfo());
             Resources.asByteSource(dataUrl).copyTo(response.getOutputStream());
         }
     }

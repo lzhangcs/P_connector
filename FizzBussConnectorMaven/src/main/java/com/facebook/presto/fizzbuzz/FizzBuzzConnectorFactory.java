@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.airlift.bootstrap.Bootstrap;
 import com.facebook.airlift.json.JsonModule;
@@ -26,7 +26,7 @@ import java.util.Map;
 import static com.google.common.base.Throwables.throwIfUnchecked;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleConnectorFactory
+public class FizzBuzzConnectorFactory
         implements ConnectorFactory
 {
     @Override
@@ -38,7 +38,7 @@ public class ExampleConnectorFactory
     @Override
     public ConnectorHandleResolver getHandleResolver()
     {
-        return new ExampleHandleResolver();
+        return new FizzBuzzHandleResolver();
     }
 
     @Override

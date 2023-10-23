@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.airlift.configuration.testing.ConfigAssertions;
 import com.google.common.collect.ImmutableMap;
@@ -33,11 +33,11 @@ public class TestExampleConfig
     public void testExplicitPropertyMappings()
     {
         Map<String, String> properties = new ImmutableMap.Builder<String, String>()
-                .put("metadata-uri", "file://test.json")
+                .put("metadata-uri", "file://fizzbuzz-metadata.json")
                 .build();
 
         ExampleConfig expected = new ExampleConfig()
-                .setMetadata(URI.create("file://test.json"));
+                .setMetadata(URI.create("file://fizzbuzz-metadata.json"));
 
         ConfigAssertions.assertFullMapping(properties, expected);
     }

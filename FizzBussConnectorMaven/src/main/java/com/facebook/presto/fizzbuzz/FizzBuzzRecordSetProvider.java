@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.presto.spi.ColumnHandle;
 import com.facebook.presto.spi.ConnectorSession;
@@ -28,13 +28,13 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleRecordSetProvider
+public class FizzBuzzRecordSetProvider
         implements ConnectorRecordSetProvider
 {
     private final String connectorId;
 
     @Inject
-    public ExampleRecordSetProvider(ExampleConnectorId connectorId)
+    public FizzBuzzRecordSetProvider(FizzBuzzConnectorId connectorId)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
     }
@@ -43,14 +43,15 @@ public class ExampleRecordSetProvider
     public RecordSet getRecordSet(ConnectorTransactionHandle transactionHandle, ConnectorSession session, ConnectorSplit split, List<? extends ColumnHandle> columns)
     {
         requireNonNull(split, "partitionChunk is null");
-        ExampleSplit exampleSplit = (ExampleSplit) split;
-        checkArgument(exampleSplit.getConnectorId().equals(connectorId), "split is not for this connector");
+        FizzBuzzSplit exampleSplit = (FizzBuzzSplit) split;
+        //checkArgument(exampleSplit.getConnectorId().equals(connectorId), "split is not for this connector");
 
-        ImmutableList.Builder<ExampleColumnHandle> handles = ImmutableList.builder();
+        ImmutableList.Builder<FizzBuzzColumnHandle> handles = ImmutableList.builder();
         for (ColumnHandle handle : columns) {
-            handles.add((ExampleColumnHandle) handle);
+            handles.add((FizzBuzzColumnHandle) handle);
         }
 
-        return new ExampleRecordSet(exampleSplit, handles.build());
+        return new FizzBuzzRecordSet(exampleSplit, handles.build());
     }
 }
+

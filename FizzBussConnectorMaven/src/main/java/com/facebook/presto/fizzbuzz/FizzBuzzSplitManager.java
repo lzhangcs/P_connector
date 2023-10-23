@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.presto.spi.ConnectorSession;
 import com.facebook.presto.spi.ConnectorSplit;
@@ -31,17 +31,17 @@ import java.util.List;
 import static com.google.common.base.Preconditions.checkState;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleSplitManager
+public class FizzBuzzSplitManager
         implements ConnectorSplitManager
 {
     private final String connectorId;
-    private final ExampleClient exampleClient;
+    private final FizzBuzzClient FizzBuzzClient;
 
     @Inject
-    public ExampleSplitManager(ExampleConnectorId connectorId, ExampleClient exampleClient)
+    public FizzBuzzSplitManager(FizzBuzzConnectorId connectorId, FizzBuzzClient FizzBuzzClient)
     {
         this.connectorId = requireNonNull(connectorId, "connectorId is null").toString();
-        this.exampleClient = requireNonNull(exampleClient, "client is null");
+        this.FizzBuzzClient = requireNonNull(FizzBuzzClient, "client is null");
     }
 
     @Override
@@ -51,15 +51,15 @@ public class ExampleSplitManager
             ConnectorTableLayoutHandle layout,
             SplitSchedulingContext splitSchedulingContext)
     {
-        ExampleTableLayoutHandle layoutHandle = (ExampleTableLayoutHandle) layout;
-        ExampleTableHandle tableHandle = layoutHandle.getTable();
-        FizzBuzzTable table = exampleClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
+        FizzBuzzTableLayoutHandle layoutHandle = (FizzBuzzTableLayoutHandle) layout;
+        FizzBuzzTableHandle tableHandle = layoutHandle.getTable();
+        FizzBuzzTable table = FizzBuzzClient.getTable(tableHandle.getSchemaName(), tableHandle.getTableName());
         // this can happen if table is removed during a query
         checkState(table != null, "Table %s.%s no longer exists", tableHandle.getSchemaName(), tableHandle.getTableName());
 
         List<ConnectorSplit> splits = new ArrayList<>();
         for (URI uri : table.getSources()) {
-            splits.add(new ExampleSplit(connectorId, tableHandle.getSchemaName(), tableHandle.getTableName(), uri));
+            splits.add(new FizzBuzzSplit(connectorId, tableHandle.getSchemaName(), tableHandle.getTableName(), uri));
         }
         Collections.shuffle(splits);
 

@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.presto.spi.ColumnMetadata;
 import com.google.common.collect.ImmutableList;
@@ -21,19 +21,19 @@ import java.net.URI;
 
 import static com.facebook.presto.common.type.BigintType.BIGINT;
 import static com.facebook.presto.common.type.VarcharType.createUnboundedVarcharType;
-import static com.facebook.presto.example.MetadataUtil.TABLE_CODEC;
+import static com.facebook.presto.fizzbuzz.MetadataUtil.TABLE_CODEC;
 import static org.testng.Assert.assertEquals;
 
-public class TestExampleTable
+public class TestFizzBuzzTable
 {
-    private final FizzBuzzTable exampleTable = new FizzBuzzTable("tableName",
-            ImmutableList.of(new ExampleColumn("a", createUnboundedVarcharType()), new ExampleColumn("b", BIGINT)),
-            ImmutableList.of(URI.create("file://table-1.json"), URI.create("file://table-2.json")));
+    private final FizzBuzzTable FizzBuzzTable = new FizzBuzzTable("tableName",
+            ImmutableList.of(new FizzBuzzColumn("a", createUnboundedVarcharType()), new FizzBuzzColumn("b", BIGINT)),
+            ImmutableList.of(URI.create("file://fizzbuzz-metadata.json")));
 
     @Test
     public void testColumnMetadata()
     {
-        assertEquals(exampleTable.getColumnsMetadata(), ImmutableList.of(
+        assertEquals(FizzBuzzTable.getColumnsMetadata(), ImmutableList.of(
                 new ColumnMetadata("a", createUnboundedVarcharType()),
                 new ColumnMetadata("b", BIGINT)));
     }
@@ -41,11 +41,11 @@ public class TestExampleTable
     @Test
     public void testRoundTrip()
     {
-        String json = TABLE_CODEC.toJson(exampleTable);
-        FizzBuzzTable exampleTableCopy = TABLE_CODEC.fromJson(json);
+        String json = TABLE_CODEC.toJson(FizzBuzzTable);
+        FizzBuzzTable FizzBuzzTableCopy = TABLE_CODEC.fromJson(json);
 
-        assertEquals(exampleTableCopy.getName(), exampleTable.getName());
-        assertEquals(exampleTableCopy.getColumns(), exampleTable.getColumns());
-        assertEquals(exampleTableCopy.getSources(), exampleTable.getSources());
+        assertEquals(FizzBuzzTableCopy.getName(), FizzBuzzTable.getName());
+        assertEquals(FizzBuzzTableCopy.getColumns(), FizzBuzzTable.getColumns());
+        assertEquals(FizzBuzzTableCopy.getSources(), FizzBuzzTable.getSources());
     }
 }

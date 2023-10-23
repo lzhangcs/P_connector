@@ -11,12 +11,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
-import com.facebook.presto.spi.connector.ConnectorTransactionHandle;
-
-public enum ExampleTransactionHandle
-        implements ConnectorTransactionHandle
+public interface SqlExecutor
 {
-    INSTANCE
+    void execute(String sql);
 }

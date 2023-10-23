@@ -1,0 +1,18 @@
+{
+    "FizzBuzz": [
+        {
+            "name": "fizzBuzz",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "BIGINT"
+                },
+                {
+                    "name": "value",
+                    "type": "VARCHAR"
+                }
+            ],
+            "sources": [ "fizzBuzz.csv"]
+        }
+    ]
+}

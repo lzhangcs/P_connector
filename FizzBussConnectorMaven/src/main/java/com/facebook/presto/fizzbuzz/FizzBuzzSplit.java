@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.presto.spi.ConnectorSplit;
 import com.facebook.presto.spi.HostAddress;
@@ -22,22 +22,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 
 import java.net.URI;
-import java.util.List;
+
+//Linda
+import com.google.common.collect.ImmutableMap;
+import javax.inject.Inject;
+import java.util.HashMap;
+
+
 
 import static com.facebook.presto.spi.schedule.NodeSelectionStrategy.NO_PREFERENCE;
 import static java.util.Objects.requireNonNull;
 
-public class ExampleSplit
-        implements ConnectorSplit
-{
-    private final String connectorId;
+public class FizzBuzzSplit
+        implements ConnectorSplit {
+    //private final String connectorId;
     private final String schemaName;
     private final String tableName;
-    private final URI uri;
-    private final List<HostAddress> addresses;
+    //private final URI uri;
+
+    //Linda
+    private immutableMap <Integer, String> fbImmutableMap;
+
 
     @JsonCreator
-    public ExampleSplit(
+    public FizzBuzzSplit(
             @JsonProperty("connectorId") String connectorId,
             @JsonProperty("schemaName") String schemaName,
             @JsonProperty("tableName") String tableName,
@@ -51,12 +59,47 @@ public class ExampleSplit
         addresses = ImmutableList.of(HostAddress.fromUri(uri));
     }
 
-    @JsonProperty
-    public String getConnectorId()
+    public static void writeMap2CsvFile(HashMap<Integer, String> map, String filepath)
     {
-        return connectorId;
+        final String[] header = new String[] { "id", "group"};
+        String eol = System.getProperty("line.separator");
+
+        try (FileWriter writer = new FileWriter(filepath, false))
+        {
+            writer.append(header[0]).append(',').append(header[1]).append(eol);
+            for (Map.Entry<Integer, String> entry : map.entrySet())
+            {
+                writer.append(Integer.toString(entry.getKey())).append(',').append(entry.getValue()).append(eol);
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
     }
 
+    //linda
+    public immutableMap<Integer, String> generateFizzBuzzData() {
+        HashMap<Integer, String> result = new HashMap<>();
+
+        for (int i = 1; i <= 10000; i++) {
+            if (i % 3 == 0 && i % 5 == 0) {
+                result.put(i, "FizzBuzz");
+            } else if (i % 3 == 0) {
+                result.put(i, "Fizz");
+            } else if (i % 5 == 0) {
+                result.put(i, "Buzz");
+            } else {
+                result.put(i, Integer.toString(i));
+            }
+        }
+
+        String csvfile = "C:\\temp\\fizzBuzz.csv";
+        writeMap2CsvFile(result, csvfile);
+
+        fbImmutableMap = ImmutableMap.copyOf(result);
+        return fbImmutablemap;
+    }
+    //linda
     @JsonProperty
     public String getSchemaName()
     {
