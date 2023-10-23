@@ -11,7 +11,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.presto.example;
+package com.facebook.presto.fizzbuzz;
 
 import com.facebook.airlift.json.JsonCodec;
 import com.google.common.base.Function;
