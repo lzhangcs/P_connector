@@ -8,64 +8,65 @@
         <version>0.285-SNAPSHOT</version>
     </parent>
 
-
-    <artifactId>presto-example-http</artifactId>
-    <description>Presto - Example HTTP Connector</description>
+    <artifactId>FizzBussConnectorMaven</artifactId>
+    <description>Presto - FizzBuss Connector</description>
     <packaging>presto-plugin</packaging>
 
+
     <properties>
-        <!--<air.main.basedir>${project.parent.basedir}</air.main.basedir>-->
-       <!-- Linda -->
+        <air.main.basedir>${project.parent.basedir}</air.main.basedir>
+
         <air.main.basedir>${project.basedir}</air.main.basedir>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.facebook.airlift</groupId>
-            <artifactId>bootstrap</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>com.facebook.airlift</groupId>
-            <artifactId>json</artifactId>
-        </dependency>
+       <dependencies>
+           <dependency>
+               <groupId>com.facebook.airlift</groupId>
+               <artifactId>bootstrap</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>com.facebook.airlift</groupId>
-            <artifactId>log</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>com.facebook.airlift</groupId>
+               <artifactId>json</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>com.facebook.airlift</groupId>
-            <artifactId>configuration</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>com.facebook.airlift</groupId>
+               <artifactId>log</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>com.facebook.airlift</groupId>
+               <artifactId>configuration</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>com.google.guava</groupId>
+               <artifactId>guava</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>com.google.inject</groupId>
+               <artifactId>guice</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>javax.validation</groupId>
+               <artifactId>validation-api</artifactId>
+           </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
+           <dependency>
+               <groupId>javax.inject</groupId>
+               <artifactId>javax.inject</artifactId>
+           </dependency>
 
-        <!-- Presto SPI -->
+           <dependency>
+               <groupId>com.fasterxml.jackson.core</groupId>
+               <artifactId>jackson-databind</artifactId>
+           </dependency>
+
+           <!-- Presto SPI -->
         <dependency>
             <groupId>com.facebook.presto</groupId>
             <artifactId>presto-spi</artifactId>
